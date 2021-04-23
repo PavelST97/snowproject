@@ -1,0 +1,67 @@
+body {
+    background: #add8e6;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "nav header header"
+    "nav article ads"
+    "nav footer footer";
+  grid-template-rows: 20% 1fr 100px;
+  grid-template-columns: 15% 1fr 15%;
+  grid-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  }
+header, footer, article, nav, div {
+  padding: 20px;
+  border: 2px solid #4d4d4d;
+}
+nav {
+  border-right: 5px solid #4d4d4d;
+  background: #2f4f4f;
+  color: #f0f8ff;
+}
+nav ul {
+  list-style: none;
+
+}
+nav ul li, ul a {
+  color: #7fffd4;
+  margin-top: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  transition: transform .6s ease;
+}
+nav ul li:hover, nav ul a:hover {
+  color: #00008b;
+  transform: scale(1.08);
+}
+#pageHeader {
+  grid-area: header;
+}
+#pageFooter {
+  grid-area: footer;
+}
+#mainArticle {
+  grid-area: article;
+  }
+#mainNav {
+  grid-area: nav;
+  }
+#siteAds {
+  grid-area: ads;
+}
+#mainArticle {
+  display: grid;
+  grid-template-areas:
+    "ord1 ord2"
+    "ord3 ord4"
+    "ord5 ord6";
+  grid-template-rows: 25% 25% 25%;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  grid-gap: 20px;
+
+}
