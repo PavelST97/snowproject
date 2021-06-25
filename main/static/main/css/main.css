@@ -1,5 +1,5 @@
 body {
-    background: #add8e6;
+    background: #f0f8ff;
 }
 
 body {
@@ -14,9 +14,12 @@ body {
   height: 100vh;
   margin: 0;
   }
-header, footer, article, nav, div {
+header, footer, nav {
   padding: 20px;
   border: 2px solid #4d4d4d;
+}
+article {
+  border-right: 5px solid #4d4d4d;
 }
 nav {
   border-right: 5px solid #4d4d4d;
