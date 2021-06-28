@@ -36,6 +36,24 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        {% if not request.user.is_authenticated %}
+
+                        <li>
+                            <a class="nav-link text-grey" href="{% url 'login' %}">Авторизация</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-grey" href="#">Регистрация</a>
+                        </li>
+                        {% endif %}
+                        <li style="list-style-type: none;" class="nav-item">
+                            {% if request.user.is_authenticated %}
+                                <span class="navbar text text-grey">Здравствуйте, <span class="badge badge-danger">
+                                <a class="navbar-brand" href="#">{{ request.user.username }}</a>
+                                </span></span>
+                            {% endif %}
+                        </li>
+                    </ul>
                     <form class="d-flex">
                             <button class="btn btn-outline-dark" type="submit">
                                 <a class="nav-link" href="{% url 'cart' %}">
@@ -127,48 +145,3 @@
     </body>
 </html>
 
-{#{% load static %}#}
-{#<!doctype html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <meta name="viewport"#}
-{#          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
-{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
-{#    <title>Главная страница</title>#}
-{#    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">#}
-{#</head>#}
-{#    <body>#}
-{#        <header id="pageHeader">#}
-{#            Header#}
-{#        </header>#}
-{#        <article id="mainArticle">#}
-{#            {% block content %}#}
-{#                {% for product in products %}#}
-{#                    <div>#}
-{#                        <div>#}
-{#                        <a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}"></a>#}
-{#                        <h3>{{ product.title }}</h3>#}
-{#                        <h4>{{ product.price }}</h4>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                {% endfor %}#}
-{#            {% endblock content %}#}
-{#        </article>#}
-{#        <nav id="mainNav">#}
-{#            <h3>Navigations</h3>#}
-{#            <ul>#}
-{#                <li><a href="{% url 'base' %}">Главная</a></li>#}
-{#                <li><a href="{% url 'product_list' %}">Ассортимент</a></li>#}
-{#                <li><a href="#">О нас</a></li>#}
-{#                <li><a href="#">Контакты</a></li>#}
-{#            </ul>#}
-{#        </nav>#}
-{#        <div id="siteAds">#}
-{#            Ads#}
-{#        </div>#}
-{#        <footer id="pageFooter">#}
-{#            Footer#}
-{#        </footer>#}
-{#    </body>#}
-{#</html>#}

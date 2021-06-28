@@ -1,12 +1,13 @@
 from django.db import transaction
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, View
+from django.views.generic import DetailView, View
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 from .models import Product, Category, Customer, Cart, CartProduct
 from .mixins import CartMixin, ProductListViewMixin
-from .forms import OrderForm
+from .forms import OrderForm, LoginForm
 from .utils import recalc_cart
 
 
@@ -14,7 +15,6 @@ class BaseView(CartMixin, View):
 
     def get(self, request, *args, **kwargs):
         products = Product.objects.all().order_by('-id')[:4]
-        # categories = Category.objects.all()
         categories = Category.objects.get_categories_for_navbar()
         context = {
             'products': products,
@@ -147,3 +147,25 @@ class MakeOrderView(CartMixin, View):
             customer.order.add(new_order)
             return HttpResponseRedirect('/')
         return HttpResponseRedirect('/checkout/')
+
+
+class LoginView(CartMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        form = LoginForm(request.POST or None)
+        context = {
+            'form': form,
+            'cart': self.cart
+        }
+        return render(request, 'main/login.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = LoginForm(request.POST or None)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return HttpResponseRedirect('/')
+        return render(request, 'main/login.html', {'form': form, 'cart': self.cart})
