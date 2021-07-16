@@ -14,7 +14,7 @@ class ProductListViewMixin(SingleObjectMixin):
         if isinstance(self.get_object(), Category):
             context = super().get_context_data(**kwargs)
             obj = self.get_object()
-            category_products = Product.objects.filter(category=obj)
+            category_products = Product.objects.filter(category=obj, discount=False)
             context['category_products'] = category_products
             context['categories'] = Category.objects.get_categories_for_navbar()
             return context

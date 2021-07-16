@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="row" style="margin-bottom: 300px; margin-top: 180px">
+    <div class="row" style="margin-bottom: 50px; margin-top: 50px">
         <div class="col-4 offset-md-4">
-            <h3 class="text-center">Авторизация</h3>
+            <h3 class="text-center">Регистрация</h3>
             <hr>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <input type="submit" class="btn btn-success" value="Войти">
+                <input type="submit" class="btn btn-success" value="Зарегистрировать">
             </form>
         </div>
     </div>

@@ -1,7 +1,6 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-        <!-- Product section-->
         <nav aria-label="breadcrumb" class="mt-3">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
@@ -17,7 +16,7 @@
                         <div class="small mb-1">SKU: BST-498</div>
                         <h1 class="display-5 fw-bolder">{{ product.title }}</h1>
                         <div class="fs-5 mb-5">
-                            <span>Цена: ${{ product.price }}</span>
+                            <span>Цена: ${{ product.price }} руб.</span>
                         </div>
                         <p class="lead">{{ product.description }}</p>
                         <div class="d-flex">

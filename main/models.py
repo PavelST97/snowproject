@@ -5,7 +5,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import get_user_model
 
 from django.utils import timezone
-
 from django.urls import reverse
 
 from io import BytesIO
@@ -50,7 +49,9 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание')
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Цена')
     discount = models.BooleanField(default=False, verbose_name='скидка')
-    discount_price = models.CharField(max_length=255, null=True, blank=True, verbose_name='Скидочная цена')
+    discount_price = models.DecimalField(
+        max_digits=9, decimal_places=2, null=True, blank=True, verbose_name='Скидочная цена'
+    )
     size = models.CharField(max_length=255, verbose_name='Ростовка')
 
     def __str__(self):
@@ -85,7 +86,10 @@ class CartProduct(models.Model):
         return "Продукт: {} (для корзины)".format(self.product.title)
 
     def save(self, *args, **kwargs):
-        self.final_price = self.qty * self.product.price
+        if self.product.discount:
+            self.final_price = self.qty * float(self.product.discount_price)
+        else:
+            self.final_price = self.qty * self.product.price
         super().save(*args, **kwargs)
 
 

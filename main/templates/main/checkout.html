@@ -18,9 +18,9 @@
 <tr>
     <th scope="row">{{ item.product.title }}</th>
     <td><img class="img-fluid" width="150" height="200" src="{{ item.product.image.url }}"></td>
-    <td>{{ item.product.price }}</td>
+    <td>{{ item.product.price }} руб.</td>
     <td>{{ item.qty }}</td>
-        <td>{{ item.final_price }}</td>
+        <td>{{ item.final_price }} руб.</td>
 </tr>
 {% endfor %}
 <tr>

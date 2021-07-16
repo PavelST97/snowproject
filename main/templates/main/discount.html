@@ -1,7 +1,7 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<nav aria-label="breadcrumb" class="mt-3" style="margin-left: 40px">
+<nav aria-label="breadcrumb" class="mt-3">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
     <li class="breadcrumb-item active" aria-current="page">Категории</li>
@@ -10,18 +10,20 @@
 <h1 class="text-center">Product list</h1>
 <div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        {% for product in category_products %}
+        {% for product in product_discount %}
         <div class="col mb-5">
             <div class="card h-100">
-                <a href="{{ product.get_absolute_url }} "><img class="card-img-top" src="{{ product.image.url }}"/></a>
+                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}"/></a>
                 <div class="card-body p-4">
                     <div class="text-center">
                         <h5 class="fw-bolder"><a href="{{ product.get_absolute_url }} ">{{ product.title }}</a></h5>
-                        {{ product.price }} руб.
+                        <span class="text-muted text-decoration-line-through">{{ product.price }}</span>
+                        {{ product.discount_price }} руб.
                     </div>
-                </div>
-                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'add_to_cart' slug=product.slug %}">Add to cart</a></div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'add_to_cart' slug=product.slug %}">Add to cart</a></div>
+                    </div>
                 </div>
             </div>
         </div>
