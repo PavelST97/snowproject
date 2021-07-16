@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <nav aria-label="breadcrumb" class="mt-3" style="margin-left: 40px">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">О нас</li>
+      </ol>
+    </nav>
+    <div class="d-flex flex-column" style="margin-bottom: 50px; margin-top: 15px">
+        <div class="p2">
+            <h2 class="text-center">О SnowSHOP</h2>
+            <hr>
+            <h4>Интернет-магазин SnowSHO только начинает свою деятельность как интернет магазин снаряжения для зимних видов спорта. Всё началось с горнолыжного курорта логойск, который до сих пор является одним из самых любых мест для сноубордистов в Беларуси.
+                Мы выбрали сноубординг, вейкбординг, серфинг, сап сёрфинг, скейтбординг и лонгбординг как основные виды активности, которыми мы занимаемся, продаём и продвигаем. Мы не останавливаемся на этом и постоянно думаем над новыми интересными направлениями.
+                Мы предлагаем лучшие бренды в нашем магазине по всем направлениям деятельности: SLINGSHOT, ION, LANDYACHTZ, LONG ISLAND, SKATE MAFI.
+            </h4>
+        </div>
+    </div>
+{% endblock content %}

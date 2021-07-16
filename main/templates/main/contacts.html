@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <nav aria-label="breadcrumb" class="mt-3" style="margin-left: 40px">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'base' %}">Главная</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Контакты</li>
+      </ol>
+    </nav>
+    <div class="d-flex flex-column" style="margin-bottom: 50px; margin-top: 15px">
+        <div class="p2">
+            <h2 class="text-center">Контакты SnowSHOP</h2>
+            <hr>
+            <p>Время работы онлайн - магазина (обработка заказов, консультация): каждый день с 9:00 до 23:00</p>
+            <p>Время работы оффлайн - магазина (бордшопа) : каждый день с 11:00 до 23:00</p>
+            <hr>
+            <p>Наш SnowSHOP находится в самом центре Минска - Немига. Приходите в гости, мы Вас ждём!</p>
+            <hr>
+            <p>Мы в инстаграмме - @pavlik_sturlis</p>
+            <p>Наша электронная почта - snowproject@mail.by</p>
+            <p>По любым вопросам, вопросам и предложениям связывайтесь с нами по телефону +937 99 92 (Telegram, Viber, Whats App).</p>
+        </div>
+    </div>
+{% endblock content %}
