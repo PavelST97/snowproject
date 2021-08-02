@@ -142,15 +142,27 @@ class CartView(CartMixin, View):
 class AddToCartView(CartMixin, View):
 
     def get(self, request, *args, **kwargs):
-        product_slug = kwargs.get('slug')
-        product = Product.objects.get(slug=product_slug)
-        cart_product, created = CartProduct.objects.get_or_create(
-            user=self.cart.owner, cart=self.cart, product=product
-        )
-        if created:
-            self.cart.products.add(cart_product)
-        recalc_cart(self.cart)
-        messages.add_message(request, messages.INFO, 'Товар успешно добавлен!')
+        categories = Category.objects.get_categories_for_navbar()
+        weather_lahoysk = int(current_weather('логойск')['main']['temp'])
+        weather_silichi = int(current_weather('силичи')['main']['temp'])
+        context = {
+            'cart': self.cart,
+            'categories': categories,
+            'weather_lahoysk': weather_lahoysk,
+            'weather_silichi': weather_silichi
+        }
+        try:
+            product_slug = kwargs.get('slug')
+            product = Product.objects.get(slug=product_slug)
+            cart_product, created = CartProduct.objects.get_or_create(
+                user=self.cart.owner, cart=self.cart, product=product
+            )
+            if created:
+                self.cart.products.add(cart_product)
+            recalc_cart(self.cart)
+            messages.add_message(request, messages.INFO, 'Товар успешно добавлен!')
+        except Exception:
+            return HttpResponseRedirect('/registration/')
         return HttpResponseRedirect('/')
 
 
